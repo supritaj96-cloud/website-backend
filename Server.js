@@ -12,7 +12,8 @@ const orderRoutes = require('./Routes/OrderRoutes');
 const paymentRoutes = require('./Routes/PaymentRoutes');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
+
 
 app.use(cors());
 app.use(express.json());
@@ -32,7 +33,7 @@ const startServer = async () => {
         await db.initialize();
         await db.sequelize.sync({ alter: true });
 
-        app.listen(PORT, "0.0.0.0", () => {
+        app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
         });
     } catch (error) {
